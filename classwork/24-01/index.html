@@ -21,13 +21,9 @@
 else {
     console.log('It is not a number')
 }
-var numb = 15;
-      function DescendingOrder(numb) {
-         document.write(numb, "<br>");
-         var Number = numb - 1;
-         if (Number <= 0) 
-         console.log("It is a number")
-            return;
-      };
-      DescendingOrder(numb);
+function descendingOrder(n){
+  let newN = n.toString().split('').sort(function(a,b){return b-a}).join().replace(/,/g,'');
+  return parseInt(newN);
+}
+console.log(newN)
 </script>
