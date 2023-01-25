@@ -21,4 +21,10 @@
 else {
     console.log('It is not a number')
 }
+function descendingOrder(n){
+    let newN = n.toString().split('').sort(function (a, b) {return b - a; }).join('');
+  return parseInt(newN);
+
+  console.log(descendingOrder)
+}
 </script>
