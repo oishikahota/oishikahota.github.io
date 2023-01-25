@@ -21,17 +21,17 @@
 else {
     console.log('It is not a number')
 }
-function rec() {
-         var number = 10;
-         function DescendingOrder(number) {
-            if (number <= 0) {
-               return;
-            } else {
-               document.write(number, "<br>");
-               DescendingOrder(number - 1);
-            }
+var numb = 15;
+      function DescendingOrder(numb) {
+         document.write(numb, "<br>");
+         var Number = numb - 1;
+         if (Number <= 0) {
+            return;
+         } else {
+            DescendingOrder(Number);
          }
-         DescendingOrder(number);
       };
-      console.log(rec)
+      DescendingOrder(numb);
+
+      console.log(numb)
 </script>
