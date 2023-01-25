@@ -21,9 +21,14 @@
 else {
     console.log('It is not a number')
 }
-function descendingOrder(n){
-  let newN = n.toString().split('').sort(function(a,b){return b-a}).join().replace(/,/g,'');
-  return parseInt(newN);
+function descendingOrder(n) {
+  let result = n
+    .toString() // convert numbers to string
+    .split('') // split each string char in to an array of chars
+    .sort((a, b) => b - a) // sort that array descending
+    .join('') // regroup all items in that array into 1 string
+
+  return parseInt(result) // turn the group of strings into an array
 }
-console.log(newN = 12)
+console.log(result)
 </script>
