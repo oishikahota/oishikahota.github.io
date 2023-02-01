@@ -1,3 +1,4 @@
+<script>
 function returnsSq(val) {
     if (isNaN(val)) {
         console.log("Not a number.")
@@ -21,4 +22,4 @@ function returnsSq(val) {
             c = a + b;
             return c;
           }
-          console.log(sum(5, 10));
+ </script>
