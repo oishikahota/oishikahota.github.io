@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf 8"/>
+    <style>
+        #myHeader {
+          background-color: rgb(225, 225, 225);
+          color: rgb(226, 226, 226);
+          padding: 40px;
+          text-align: center;
+          background-image: url('https://static.scientificamerican.com/sciam/cache/file/FB4ACEF7-82D0-4B9D-8896BDDA20BBDFC0_source.jpg')
+        }
+        </style>
+    <h1 id="myHeader"> Oishika Hota's Website for Viz Tech 1</h1>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body style="background-color:rgb(226, 226, 226)";)></body>
+    <h4> Homework for 01/31/23 </h4>
+
+    <body>
+
+    <script>
+
+ //2 different data arrays
+ var dataArray1 = [50,65,75,85,90];
+ var dataArray2 = [50,55,65,75,40,35,95,20];
+            
+  //globals
+    var dataIndex=1;
+    var xBuffer=20;
+    var yBuffer=100;
+    var lineLength=650;
+            
+            
+     //create main svg element
+    var svgDoc = d3.select("body").append("svg")
+
+     svgDoc.append("text")
+        .attr("x",xBuffer+(lineLength/2))
+        .attr("y",60)
+        .attr("color", "blue")
+            
+    //create axis line
+      svgDoc.append("line")
+        .attr("x1",xBuffer)
+        .attr("y1",yBuffer)
+        .attr("x2",xBuffer+lineLength)
+        .attr("y2",yBuffer)
+            
+    //create basic circles
+      svgDoc.append("g").selectAll("circle")
+        .data(eval("dataArray"+dataIndex))
+        .enter()
+        .append("circle")
+        .attr("cx",function(d,i){
+
+    var spacing = lineLength/(eval("dataArray"+dataIndex).length);
+      return xBuffer+(i*spacing)
+        })
+         .attr("cy",yBuffer)
+        .attr("r",function(d,i){return d});
+            
+    //button to swap over datasets
+      d3.select("body").append("button")
+      .text("Change")
+      .on("click",function(){
+     //select new data
+      if (dataIndex==1) {
+         dataIndex=2;  
+      } else   {
+      dataIndex=1;
+                    }
+    //rejoin data
+      var circle = svgDoc.select("g").selectAll("circle")
+      .data(eval("dataArray"+dataIndex));
+                    
+      circle.exit().remove();//remove unneeded circles
+      circle.enter().append("circle")
+      .attr("r",0);//create any new circles needed
+
+      //update all circles to new positions
+        circle.transition()
+        .duration(500)
+        .attr("cx",function(d,i){
+       var spacing = lineLength/(eval("dataArray"+dataIndex).length);
+      return xBuffer+(i*spacing)
+     })
+      .attr("cy",yBuffer)
+      .attr("r",function(d,i){return d});
+
+  d3.select("text").text("dataset"+dataIndex);
+
+  });//end click function
+
+    </script>
+    </body>
+</html>
