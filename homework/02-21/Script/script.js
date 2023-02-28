@@ -383,7 +383,7 @@ d3.csv("./data/gapminder.csv").then(function(data) {
             .attr("y", function(d) { return yScale(d.lifeExp); })
             .attr("width", xScale.bandwidth())
             .attr("height", function(d) { return height - (margin.bottom + yScale(d.lifeExp)) })
-            .attr("fill", "steelblue");
+            .attr("fill", "hotpink");
     
     /*
     7. DRAW AXIS LABELS
