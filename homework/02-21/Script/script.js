@@ -235,10 +235,10 @@ d3.csv("./data/gapminder.csv").then(function(data) {
     */
 
     const margin = {
-        top: 50, 
-        left: 50, 
-        right: 50, 
-        bottom: 50
+        top: 20, 
+        left: 40, 
+        right: 20, 
+        bottom: 40,
     };
 
     const xScale = d3.scaleBand()
