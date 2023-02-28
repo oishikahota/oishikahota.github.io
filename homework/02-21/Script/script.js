@@ -130,7 +130,7 @@ d3.csv("./data/gapminder.csv").then(function(data) {
 
     let filtered_data = data.filter(function(d) {
 
-        return d.country === 'United States';
+        return d.country === 'India';
 
     });
 
@@ -242,7 +242,7 @@ d3.csv("./data/gapminder.csv").then(function(data) {
     };
 
     const xScale = d3.scaleBand()
-        .domain(["1952","1957","1962","1967","1972","1977","1982","1987","1992","1997","2002","2007"])
+        .domain(["1972","1977","1982","1987","1992","1997","2002","2007"])
         .range([margin.left, width - margin.right])
         .padding(0.5);
 
