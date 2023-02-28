@@ -33,7 +33,6 @@
     of `data` with console.log(data).
 
 */
-<script>
 
 d3.csv("./data/gapminder.csv").then(function(data) {
 
@@ -425,4 +424,3 @@ d3.csv("./data/gapminder.csv").then(function(data) {
         .text("Life Expectancy (Years)");
 
 });
-<script>
