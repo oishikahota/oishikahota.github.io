@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactive Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+  </head>
+
+      <body>
+    <!-- Add a div element with a unique ID for the map container -->
+    <div id="mapid" style="height: 600px; width: 800px;"></div>
+    
+    <script>
+      // Create a new Leaflet map instance
+      var mymap = L.map("mapid").setView([51.505, -0.09], 10);
+
+      // Add a tile layer to the map using OpenStreetMap tiles
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(mymap);
+
+      
+      $.getJSON("/PD.geojson", function(data))
+      
+        $.get("/BS1.csv", function(csvString)) {
+          
+          var csvData = Papa.parse(csvString, { header: true }).data;
+        }
+         
+
+
+    </script>
+  </body>
+</html>
