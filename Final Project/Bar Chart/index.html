@@ -1,54 +1,54 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <title>Boston Shootings Bar Chart</title>
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script type="text/javascript">
-        google.charts.load('current', {packages: ['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-    
-        function drawChart() {
-          var data = new google.visualization.DataTable();
-          data.addColumn('string', 'District');
-          data.addColumn('number', 'Black or African American');
-          data.addColumn('number', 'White');
-          data.addRows([
-            ['A1', 13, 3],
-            ['A15', 4, 7],
-            ['A7', 13, 13],
-            ['B2', 452, 75],
-            ['B3', 388, 37],
-            ['C11',255,44],
-            ['C6', 37, 19],
-            ['D14',11, 7],
-            ['D4', 59, 16],
-            ['E13', 89, 42],
-            ['E18',74, 16],
-            ['E5', 18, 6]
-          ]);
-    
-          var options = {
-            title: 'Black v/s White Victims of Shootings by District',
-            chartArea: {width: '60%'},
-            hAxis: {
-              title: 'Number of Arrests',
-              minValue: 0
-            },
-            vAxis: {
-              title: 'District'
-            },
-            bars: 'horizontal',
-            colors: ['#C43E3E', '#000000']
-          };
-    
-          var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-          chart.draw(data, options);
+<html>
+  <head>
+    <title>Bar Chart Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+  </head>
+  <body>
+    <canvas id="myChart"></canvas>
+
+    <script>
+      // Define the dataset
+      const data = {
+        labels: ['Asian', 'Black or African American', 'Unknown', 'White'],
+        datasets: [{
+          label: 'Population',
+          data: [7, 1413, 68, 285],
+          backgroundColor: [
+            'rgba (255, 99, 71, 0.5)',
+            'rgba(255, 99, 71, 0.5))',
+            'rgba(255, 99, 71, 0.5)',
+            'rgba(255, 99, 71, 0.5)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 71, 0.5))',
+            'rgba(255, 99, 71, 0.5)',
+            'rgba(255, 99, 71, 0.5)',
+            'rgba(255, 99, 71, 0.5)'
+          ],
+          borderWidth: 1
+        }]
+      };
+
+      // Configure the options
+      const options = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
         }
-      </script>
-    </head>
-    <body>
-      <div id="chart_div" style="width: 900px; height: 500px;"></div>
-    </body>
-    </html>
-    
+      };
+
+      // Create the chart
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+      });
+    </script>
+  </body>
+</html>
