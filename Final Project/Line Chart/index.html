@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Line Chart Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+  <canvas id="myChart"></canvas>
+  <script>
+    Papa.parse("LineC.csv", {
+      download: true,
+      header: true,
+      complete: function(results) {
+        var chartData = {
+          labels: results.meta.fields.slice(1),
+          datasets: []
+        };
+        results.data.forEach(function(datum) {
+          var dataset = {
+            label: datum.district,
+            borderColor: getRandomColor(),
+            data: Object.values(datum).slice(1, -1),
+            fill: false
+          };
+          chartData.datasets.push(dataset);
+        });
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var chart = new Chart(ctx, {
+          type: "line",
+          data: chartData,
+          options: {
+            responsive: true,
+            title: {
+              display: true,
+              text: "Line Chart Example"
+            },
+            tooltips: {
+              mode: "index",
+              intersect: false
+            },
+            hover: {
+              mode: "nearest",
+              intersect: true
+            },
+            scales: {
+              xAxes: [{
+                display: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: "Year"
+                }
+              }],
+              yAxes: [{
+                display: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: "Value"
+                }
+              }]
+            }
+          }
+        });
+      }
+    });
+
+    function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+</body>
+</html>
