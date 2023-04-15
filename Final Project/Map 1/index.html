@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Interactive Map</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <title>Leaflet Heatmap Example with GeoJSON</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
   </head>
+  <body>
+    <div id="map" style="height: 500px;"></div>
 
-      <body>
-    <!-- Add a div element with a unique ID for the map container -->
-    <div id="mapid" style="height: 600px; width: 800px;"></div>
-    
     <script>
-      // Create a new Leaflet map instance
-      var mymap = L.map("mapid").setView([51.505, -0.09], 10);
+      // Initialize Leaflet map
+      var map = L.map("map").setView([42.3601, -71.0589], 11);
 
-      // Add a tile layer to the map using OpenStreetMap tiles
+      // Add base layer (e.g. OpenStreetMap)
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
         maxZoom: 18,
-      }).addTo(mymap);
+      }).addTo(map);
 
-      
-      $.getJSON("/PD.geojson", function(data))
-      
-        $.get("/BS1.csv", function(csvString)) {
-          
-          var csvData = Papa.parse(csvString, { header: true }).data;
-        }
-         
+      // Load GeoJSON data from file
+      fetch("https://cdn.glitch.global/dcb28440-57a0-4b46-a80d-5e9c0f913b04/merge__Police_Dis__Boston%20Sho%20(1).geojson?v=1681261220591")
+        .then((response) => response.json())
+        .then((data) => {
+          // Create an empty GeoJSON layer
+          var geoJsonLayer = L.geoJSON().addTo(map);
 
+          // Add the data to the GeoJSON layer
+          geoJsonLayer.addData(data);
 
+          // Create a heat layer using the GeoJSON data
+         var heatLayer = L.heatLayer(data.features.map(feature => feature.geometry.coordinates.reverse().concat(feature.properties.Number)), {
+    radius: 25,
+    blur: 15,
+    maxZoom: 17,
+}).addTo(map);
+
+        });
     </script>
   </body>
 </html>
