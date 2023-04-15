@@ -1,57 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title> Shootings in each district by race </title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
-  </head>
-  <body>
-
-    <h1> Shootings in each district by race</h1>
-    <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic; font-size: medium;"> The number of shootings in each district by race between 2015-2022</p>
-    <canvas id="myChart"></canvas>
-
-    <script>
-      // Define the dataset
-      const data = {
-        labels: ['Asian', 'Black or African American', 'Unknown', 'White'],
-        datasets: [{
-          label: 'Population by race',
-          data: [7, 1413, 68, 285],
-          backgroundColor: [
-            'rgba (139	0	0)',
-            'rgba(139	0	0)',
-            'rgba(139	0	0)',
-            'rgba(139	0	0)'
-          ],
-          borderColor: [
-            'rgba(139	0	0)',
-            'rgba(139	0	0)',
-            'rgba(139	0	0)',
-            'rgba(139	0	0)'
-          ],
-          borderWidth: 1
-        }]
-      };
-
-      // Configure the options
-      const options = {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      };
-
-      // Create the chart
-      const ctx = document.getElementById('myChart').getContext('2d');
-      const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: options
-      });
-    </script>
-  </body>
+<head>
+	<title>Column Chart</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Shootings in each district by race from 2015-2023</h1>
+  <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic; font-size: medium;"> The number of shootings in each district between 2015-2022</p>
+  <p style="font-size: small;">Click on the box beside each race's name to remove/add them from the chart</p>
+	<canvas id="myChart"></canvas>
+	<script>
+		var ctx = document.getElementById('myChart').getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ['Downtown', 'Charlestown', 'East Boston', 'Roxbury', 'Mattapan', 'Dorchester', 'South Boston', 'South End', 'Brighton', 'West Roxbury', 'Jamaica Plain', 'Hyde Park'],
+				datasets: [{
+					label: 'Asian',
+					data: [1, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, 1],
+					backgroundColor: '#622329',
+					borderColor: '#622329',
+					borderWidth: 1
+				}, {
+					label: 'Black or African American',
+					data: [13, 4, 13, 452, 388, 255, 37, 11, 59, 89, 74, 18],
+					backgroundColor: '#b01708',
+					borderColor: '#b01708',
+					borderWidth: 1
+				}, {
+					label: 'Unknown',
+					data: [1, 1, 6, 17, 14, 11, 2, 2, 2, 7, 3, 2],
+					backgroundColor: '#6b306c',
+					borderColor: '#6b306c',
+					borderWidth: 1
+				}, {
+					label: 'White',
+					data: [3, 7, 13, 75, 37, 44, 19, 7, 16, 42, 16, 6],
+					backgroundColor: '#000000',
+					borderColor: '#000000',
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+	</script>
+</body>
 </html>
