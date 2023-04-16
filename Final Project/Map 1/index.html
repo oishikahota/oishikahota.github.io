@@ -64,9 +64,12 @@ function style(feature) {
   };
 }
 
-// Create a GeoJSON layer with the style function applied
+// Create a GeoJSON layer with the style function and onEachFeature function applied
 var geoJsonLayer = L.geoJSON(null, {
-  style: style
+  style: style,
+  onEachFeature: function(feature, layer) {
+    layer.bindTooltip("<strong>" + feature.properties.Name + "</strong><br/>" + "Number: " + feature.properties.Number);
+  }
 }).addTo(map);
 
 // Add the data to the GeoJSON layer
