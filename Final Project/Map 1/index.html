@@ -7,6 +7,8 @@
     <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
   </head>
   <body>
+
+    <h1>Total shootings in each Boston district from 2015-2023</h1>
     <div id="map" style="height: 500px;"></div>
 
     <script>
@@ -14,10 +16,10 @@
       var map = L.map("map").setView([42.3601, -71.0589], 11);
 
       // Add base layer (e.g. OpenStreetMap)
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 18,
-      }).addTo(map);
+      L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+  maxZoom: 18,
+}).addTo(map);
 
       // Load GeoJSON data from file
       fetch("https://cdn.glitch.global/dcb28440-57a0-4b46-a80d-5e9c0f913b04/merge__Police_Dis__Boston%20Sho%20(1).geojson?v=1681261220591")
@@ -29,12 +31,140 @@
           // Add the data to the GeoJSON layer
           geoJsonLayer.addData(data);
 
+          // Define a function to style the GeoJSON layer
+function style(feature) {
+  var color;
+  var number = feature.properties.Number;
+  
+  // Define a function to style the GeoJSON layer
+function style(feature) {
+  var color;
+  var number = feature.properties.Number;
+  
+  // Assign color based on the value of the "Number" property
+  if (number < 50) {
+    color = "#ffbaba"; 
+  } else if (number < 100) {
+    color = "#ff7b7b"; 
+  } else if (number < 200) {
+    color = "#ff5252"; 
+  } else if (number < 300) {
+    color = "#ff0000"; 
+  } else {
+    color = "#a70000"; 
+  }
+  
+  return {
+    fillColor: color,
+    weight: 2,
+    opacity: 1,
+    color: 'white',
+    dashArray: '3',
+    fillOpacity: 0.5
+  };
+}
+
+// Create a GeoJSON layer with the style function applied
+var geoJsonLayer = L.geoJSON(null, {
+  style: style
+}).addTo(map);
+
+// Add the data to the GeoJSON layer
+geoJsonLayer.addData(data);
+
+
+}
+
+// Define a function to style the GeoJSON layer
+function style(feature) {
+  var color;
+  var number = feature.properties.Number;
+  
+  // Assign color based on the value of the "Number" property
+  if (number < 50) {
+    color = "#ffbaba"; 
+  } else if (number < 100) {
+    color = "#ff7b7b"; 
+  } else if (number < 200) {
+    color = "#ff5252"; 
+  } else if (number < 300) {
+    color = "#ff0000"; 
+  } else {
+    color = "#a70000"; 
+  }
+  
+  return {
+    fillColor: color,
+    weight: 2,
+    opacity: 1,
+    color: 'white',
+    dashArray: '3',
+    fillOpacity: 0.5
+  };
+}
+
+// Create a GeoJSON layer with the style function applied
+var geoJsonLayer = L.geoJSON(null, {
+  style: style
+}).addTo(map);
+
+// Add the data to the GeoJSON layer
+geoJsonLayer.addData(data);
+
+// Define legend
+var legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend');
+  var labels = ['<strong>Legend</strong>'];
+  var colors = ['#a70000', '#ff0000', '#ff5252', '#ff7b7b', '#ffbaba'];
+  var categories = ['>= 300', '200-299', '100-199', '50-99', '<50'];
+
+  // loop through our density intervals and generate a label with a colored square for each interval
+  for (var i = 0; i < categories.length; i++) {
+    div.innerHTML += 
+      labels.push(
+        '<i style="background:' + colors[i] + '"></i> ' + categories[i]
+      );
+  }
+  div.innerHTML = labels.join('<br>');
+  return div;
+};
+
+// Add legend to the map
+legend.addTo(map);
+
+// Style the legend
+$('.legend').css('background-color', 'black');
+$('.legend').css('border', '2px solid white');
+$('.legend strong').css('color', 'white');
+$('.legend i').css('border-radius', '50%');
+$('.legend i').css('margin-right', '5px');
+
+// Create a GeoJSON layer with the style function applied
+var geoJsonLayer = L.geoJSON(null, {
+  style: style
+}).addTo(map);
+
+// Add the data to the GeoJSON layer
+geoJsonLayer.addData(data);
+
           // Create a heat layer using the GeoJSON data
          var heatLayer = L.heatLayer(data.features.map(feature => feature.geometry.coordinates.reverse().concat(feature.properties.Number)), {
     radius: 25,
     blur: 15,
     maxZoom: 17,
 }).addTo(map);
+
+// Loop through each feature in the GeoJSON data and add a marker with a tooltip
+geoJsonLayer.eachLayer(function(layer) {
+  var name = layer.feature.properties.name;
+  var population = layer.feature.properties.population;
+  layer.bindTooltip(name + " (pop: " + population + ")", {
+    permanent: false,
+    direction: "auto"
+  });
+});
 
         });
     </script>
