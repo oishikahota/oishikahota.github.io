@@ -1,13 +1,8 @@
-$(document).ready(function() {
-  
-    $(window).scroll(function() {
-      
-      if ($(window).scrollTop() > 50) {
-        $('header').addClass('scrolled');
-      } else {
-        $('header').removeClass('scrolled');
-      };
-    });
-  });
-
-ß
+window.addEventListener('scroll', function() {
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > 0) {
+    document.body.classList.add('scrolled');
+  } else {
+    document.body.classList.remove('scrolled');
+  }
+});
