@@ -33,9 +33,9 @@
     text-align: center;
   }
   
-  p {
+  .p {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  line-height: 2px;
+  line-height: 200%;
   font-size: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
