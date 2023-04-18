@@ -9,6 +9,7 @@
   <body>
 
     <h1>Total shootings in each Boston district from 2015-2023</h1>
+    <p style="font-family: 'Times New Roman', Times, serif; font-style: italic;">Hover over each district to see the number of shootings</p>
     <div id="map" style="height: 500px;"></div>
 
     <script>
@@ -100,18 +101,6 @@ legend.onAdd = function (map) {
   return div;
 };
 
-// Add legend to the map
-legend.addTo(map);
-
-// Style the legend
-document.querySelectorAll('.legend').forEach(function(legend) {
-  legend.style.backgroundColor = 'black';
-  legend.style.border = '2px solid white';
-  legend.querySelector('strong').style.color = 'white';
-  var i = legend.querySelector('i');
-  i.style.borderRadius = '50%';
-  i.style.marginRight = '5px';
-});
 
 // Create a GeoJSON layer with the style function applied
 var geoJsonLayer = L.geoJSON(null, {

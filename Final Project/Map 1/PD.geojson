@@ -6,7 +6,7 @@
         "properties": {
           "ShapeSTArea": 37982842.52003406,
           "ShapeSTLength": 57556.85996408116,
-          "District": "A15",
+          "District": "Charlestown",
           "Number": "12"
         },
         "geometry": {
@@ -7508,7 +7508,7 @@
         "properties": {
           "ShapeSTArea": 140115093.28923947,
           "ShapeSTLength": 138468.21608004445,
-          "District": "A7",
+          "District": "East Boston",
           "Number": "32"
         },
         "geometry": {
@@ -41054,7 +41054,7 @@
         "properties": {
           "ShapeSTArea": 44455821.79547078,
           "ShapeSTLength": 49080.78636976452,
-          "District": "A1",
+          "District": "Downtown",
           "Number": "20"
         },
         "geometry": {
@@ -49550,7 +49550,7 @@
         "properties": {
           "ShapeSTArea": 123692841.93069921,
           "ShapeSTLength": 93915.38910786533,
-          "District": "C6",
+          "District": "South Boston",
           "Number": "59"
         },
         "geometry": {
@@ -59162,7 +59162,7 @@
         "properties": {
           "ShapeSTArea": 70005528.4948377,
           "ShapeSTLength": 41040.34742906447,
-          "District": "D4",
+          "District": "South End",
           "Number": "79"
         },
         "geometry": {
@@ -71342,7 +71342,7 @@
         "properties": {
           "ShapeSTArea": 123625268.61865959,
           "ShapeSTLength": 58025.03162702086,
-          "District": "D14",
+          "District": "Brighton",
           "Number": "21"
         },
         "geometry": {
@@ -89382,7 +89382,7 @@
         "properties": {
           "ShapeSTArea": 112047351.85540381,
           "ShapeSTLength": 67548.46158180569,
-          "District": "E13",
+          "District": "Jamaica Plain",
           "Number": "142"
         },
         "geometry": {
@@ -95722,7 +95722,7 @@
         "properties": {
           "ShapeSTArea": 191067543.47561827,
           "ShapeSTLength": 87149.32585487627,
-          "District": "E5",
+          "District": "West Roxbury",
           "Number": "28"
         },
         "geometry": {
@@ -104098,7 +104098,7 @@
         "properties": {
           "ShapeSTArea": 93158595.64368154,
           "ShapeSTLength": 60465.304581378936,
-          "District": "B3",
+          "District": "Mattapan",
           "Number": "449"
         },
         "geometry": {
@@ -110050,7 +110050,7 @@
         "properties": {
           "ShapeSTArea": 132933512.28473207,
           "ShapeSTLength": 120593.61417972863,
-          "District": "C11",
+          "District": "Dorchester",
           "Number": "315"
         },
         "geometry": {
@@ -133352,7 +133352,7 @@
         "properties": {
           "ShapeSTArea": 163284492.37358305,
           "ShapeSTLength": 78932.4580703873,
-          "District": "E18",
+          "District": "Hyde Park",
           "Number": "95"
         },
         "geometry": {
@@ -140904,7 +140904,7 @@
         "properties": {
           "ShapeSTArea": 119573041.88938506,
           "ShapeSTLength": 70994.42990616562,
-          "District": "B2",
+          "District": "Roxbury",
           "Number": "549"
         },
         "geometry": {
